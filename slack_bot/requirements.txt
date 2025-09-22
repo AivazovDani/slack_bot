@@ -1,5 +1,0 @@
-slack_bolt
-slack_sdk
-python-dotenv
-openai>=1.0.0
-schedule
