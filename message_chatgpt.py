@@ -20,7 +20,7 @@ def handle_message(message, say):
     response = client.chat.completions.create(
         model="gpt-4",
         messages=[
-            {"role": "system", "content": "Отговаряй само на български език."},
+            {"role": "system", "content": "Отговаряй на български език и английски език."},
             {"role": "user", "content": user_input}
         ]
     )
