@@ -2,21 +2,22 @@ import os
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
 
 # Load environment variables
 load_dotenv()
 
 # Set up Slack and OpenAI
 app = App(token=os.getenv("SLACK_BOT_TOKEN"))
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-@app.message("")  # Listen to all DMs
+# Respond to direct messages
+@app.message(".*")
 def handle_message(message, say):
     user_input = message['text']
 
     # Call OpenAI (GPT-4)
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4",
         messages=[
             {"role": "system", "content": "Отговаряй само на български език."},
