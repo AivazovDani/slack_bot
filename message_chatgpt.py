@@ -16,7 +16,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 def handle_message(message, say):
     user_input = message['text']
 
-    # Call OpenAI (GPT-4)
+    # Call OpenAI (GPT-4) using the new API
     response = client.chat.completions.create(
         model="gpt-4",
         messages=[
